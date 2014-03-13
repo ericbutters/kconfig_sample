@@ -1,0 +1,34 @@
+menu "Target selection"
+ 
+choice TARGET
+  prompt "Target"
+  default TARGET_ADR
+ 
+config TARGET_ADR
+  bool "adr"
+  
+config TARGET_BADR
+  bool "badr"
+
+config TARGET_AXSB
+  bool "axsb"
+  
+endchoice
+
+choice QTVERSION
+  prompt "Select Qt version"
+  
+config QT5_510
+  bool "Qt-5.1.0"
+  depends on ( TARGET_ADR || TARGET_BADR )
+
+config QT5_521
+  bool "Qt-5.2.1"
+  depends on ( TARGET_BADR || TARGET_AXSB )
+  
+config QT5_502
+  bool "Qt-5.0.2"
+  depends on ( TARGET_BADR )
+
+endchoice
+endmenu
